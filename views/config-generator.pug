@@ -1,0 +1,42 @@
+html
+	head
+		title Configuration
+		style.
+			
+			#container {
+				width: 50%;
+				text-align: center;
+			}
+
+			#submit {
+				width: 50%;
+				height: 30px;
+			}
+
+			textarea {
+				width: 50%;
+			}
+	
+	body
+		center
+			h1 config.js Generator
+			p config.js was found in the root directory. Use the generator below to generate the same. After the file has been generated, place it in the root directory of the project and restart the server.
+
+			div#container
+				form#config-form(method="POST", action="/generate")
+					fieldset
+						br
+						legend Misc.
+						| MongoDB Connection String
+						br
+						textarea#connectionString(name='connectionString')
+							|mongodb://127.0.0.1/crux-dev
+						br
+						br
+						| Site Root (eg: http://localhost:3000)
+						br
+						textarea#siteRoot(name='siteRoot')
+					br
+					br
+					button#submit(type='submit') Generate
+					br
