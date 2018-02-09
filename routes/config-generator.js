@@ -12,6 +12,9 @@ router.post('/generate', function (req, res, next) {
 	finalString += '\tsiteRoot: "' + req.body.siteRoot + '",\n';
 	finalString += '\tmongooseConnection: "' + req.body.connectionString + '",\n';
 
+	finalString += '\tclientID: "' + req.body.client + '",\n';
+	finalString += '\tclientSecret: "' + req.body.secret + '",\n';
+
 	finalString += '\n};';
 
 	res.setHeader('content-type', 'text/javascript');
