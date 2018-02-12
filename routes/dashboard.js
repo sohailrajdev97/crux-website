@@ -40,7 +40,12 @@ router.get('/login/callback', passport.authenticate('github', { failureRedirect:
 
 router.get('/login', passport.authenticate('github', { scope: ['user:email'] }));
 
-router.get('/', function(req, res, next){
+router.get('/logout', function (req, res, next) {
+	req.logout();
+	res.redirect('/');
+});
+
+router.get('/', function (req, res, next) {
 	res.json(req.user);
 });
 
