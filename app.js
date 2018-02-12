@@ -9,7 +9,7 @@ var fs = require('fs');
 
 var index = require('./routes/index');
 var members = require('./routes/members');
-var login = require('./routes/login');
+var dashboard = require('./routes/dashboard');
 
 var app = express();
 
@@ -33,7 +33,7 @@ if (fs.existsSync('./config.js')) {
 
 	app.use('/', index);
 	app.use('/members', members);
-	app.use('/login', login);
+	app.use('/dashboard', dashboard);
 
 } else {
 	var generator = require('./routes/config-generator');
