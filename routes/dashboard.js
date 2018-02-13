@@ -48,7 +48,12 @@ router.get('/login/callback', passport.authenticate('github', { failureRedirect:
 				callback: "/"
 			});
 		} else {
-			res.redirect('/dashboard');
+			membersModel.update({ github: req.user.username }, { picture: req.user._json.avatar_url }, function (err, result) {
+				if (err) {
+					return console.log(err);
+				}
+				res.redirect('/dashboard');
+			});
 		}
 	});
 });

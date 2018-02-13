@@ -7,6 +7,7 @@ var membersSchema = new Schema({
     tagline: String,
     description: String,
     skills: [String],
+    picture: String,
     email: {
     	type: String,
     	default: ""
