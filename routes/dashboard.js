@@ -45,6 +45,14 @@ router.get('/logout', function (req, res, next) {
 	res.redirect('/');
 });
 
+router.use(function (req, res, next) {
+	if (req.isAuthenticated()) {
+		next();
+	} else {
+		res.redirect('/dashboard/login');
+	}
+});
+
 router.get('/', function (req, res, next) {
 	res.json(req.user);
 });
