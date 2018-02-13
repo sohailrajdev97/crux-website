@@ -35,7 +35,22 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 router.get('/login/callback', passport.authenticate('github', { failureRedirect: '/login' }), function (req, res, next) {
-	res.redirect('/dashboard');
+	membersModel.find({ github: req.user.username }, function (err, members) {
+		if (err) {
+			return console.log(err);
+		}
+
+		if (members.length == 0) {
+			req.logout();
+			res.render('messages', {
+				title: "Unauthorized",
+				message: "Only members can access the dashboard",
+				callback: "/"
+			});
+		} else {
+			res.redirect('/dashboard');
+		}
+	});
 });
 
 router.get('/login', passport.authenticate('github', { scope: ['user:email'] }));
